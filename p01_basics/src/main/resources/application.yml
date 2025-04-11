@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: "@project.name@"
+    version: "@project.description@"
+    description: "@project.description@"
+    groupId: "@project.groupId@"
+    artifactId: "@project.artifactId@"
