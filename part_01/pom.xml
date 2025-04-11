@@ -11,10 +11,10 @@
     </parent>
 
     <groupId>org.example</groupId>
-    <artifactId>p01_basics</artifactId>
+    <artifactId>part_01</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>p01_basics</name>
-    <description>p01_basics</description>
+    <name>part_01</name>
+    <description>part_01</description>
 
     <properties>
         <java.version>24</java.version>
