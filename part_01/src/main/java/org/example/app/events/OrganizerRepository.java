@@ -6,4 +6,7 @@ import java.util.List;
 
 @Repository
 public class OrganizerRepository {
+    public List<Organizer> findAll() {
+        return List.of();
+    }
 }
