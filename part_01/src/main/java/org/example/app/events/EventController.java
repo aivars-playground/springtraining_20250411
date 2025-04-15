@@ -1,7 +1,9 @@
 package org.example.app.events;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -30,7 +32,7 @@ public class EventController {
     }
 
     @GetMapping(path = "/events/{eventId}")
-    public Event getEventById(int eventId) {
+    public Event getEventById(@PathVariable("eventId") int eventId) {
         return eventRepository.findById(eventId)
                 .orElseThrow(() -> new NoSuchElementException("element by id:" + eventId + " notFound"));
     }
