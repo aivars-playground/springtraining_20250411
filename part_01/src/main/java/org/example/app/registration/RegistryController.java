@@ -1,5 +1,9 @@
 package org.example.app.registration;
 
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.NoSuchElementException;
@@ -15,7 +19,7 @@ public class RegistryController {
     }
 
     @PostMapping
-    public Registration create(@RequestBody Registration registration) {
+    public Registration create(@RequestBody @Valid Registration registration) {
         return registrationRepository.create(registration);
     }
 

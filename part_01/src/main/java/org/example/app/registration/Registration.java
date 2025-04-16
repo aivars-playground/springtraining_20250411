@@ -1,9 +1,12 @@
 package org.example.app.registration;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public record Registration(
         Integer id,
-        Integer productId,
+        @NotNull Integer productId,
         String ticketCode,
-        String attendeeName
+        @NotBlank String attendeeName
 ) {
 }
