@@ -1,18 +1,14 @@
 package org.example.app.events;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class EventRepository {
+public interface EventRepository extends JpaRepository<Event, Integer> {
 
-    public List<Event> findByOrganizerId(int organizerId) {
-        return List.of();
-    }
+    List<Event> findByOrganizerId(int organizerId);
 
-    public Optional<Event> findById(int eventId) {
-        return Optional.empty();
-    }
 }

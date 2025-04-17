@@ -2,3 +2,14 @@ spring:
   application:
     name: "@project.name@"
     version: "@project.version@"
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: pg
+    password: pass
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+  sql:
+    init:
+      mode: always
