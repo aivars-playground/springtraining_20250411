@@ -1,12 +1,10 @@
 package org.example.app.registration;
 
 import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.NoSuchElementException;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(path = "/registrations")
@@ -20,7 +18,15 @@ public class RegistryController {
 
     @PostMapping
     public Registration create(@RequestBody @Valid Registration registration) {
-        return registrationRepository.create(registration);
+        String ticketCode = UUID.randomUUID().toString();
+        return registrationRepository.insert(
+                new Registration(
+                        null,
+                        registration.productId(),
+                        ticketCode = ticketCode,
+                        registration.attendeeName()
+                )
+        );
     }
 
     @GetMapping(path = "/{ticketCode}")
@@ -31,7 +37,7 @@ public class RegistryController {
 
     @PutMapping
     public Registration update(@RequestBody Registration registration) {
-        return registrationRepository.update(registration);
+        return registrationRepository.save(registration);
     }
 
     @DeleteMapping(path = "/{ticketCode}")
