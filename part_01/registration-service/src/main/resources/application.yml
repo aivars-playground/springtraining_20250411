@@ -9,7 +9,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,env,configprops,beans,conditions,mappings,loggers
+        include: health,env,configprops,beans,conditions,mappings,loggers,metrics
   endpoint:
     health:
       show-details: always
