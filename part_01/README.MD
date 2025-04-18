@@ -41,3 +41,15 @@ GET http://localhost:9001/actuator/metrics
 ```http request
 GET http://localhost:9001/actuator/metrics/http.server.requests?tag=uri:/registrations
 ```
+
+docker
+===
+* build target jars
+```shell
+cd ./events-service
+docker build -t events-service:0.0.1-SNAPSHOT .
+```
+```shell
+cd ./registration-service
+docker build -t registration-service:0.0.1-SNAPSHOT .
+```

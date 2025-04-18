@@ -1,0 +1,26 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: "@project.name@"
+    version: "@project.version@"
+  data:
+    mongodb:
+      host: mongo
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,env,configprops,beans,conditions,mappings,loggers,metrics
+  endpoint:
+    health:
+      show-details: always
+    env:
+      show-values: always
+    configprops:
+      show-values: always
+
+services:
+  events:
+    url: http://events-service:9000
