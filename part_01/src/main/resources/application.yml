@@ -3,8 +3,8 @@ spring:
     name: "@project.name@"
     version: "@project.version@"
   datasource:
-    url: jdbc:postgresql://localhost:5432/user
-    username: user
+    url: jdbc:postgresql://localhost:5432/test
+    username: test
     password: pass
   jpa:
     hibernate:

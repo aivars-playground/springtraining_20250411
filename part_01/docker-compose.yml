@@ -6,7 +6,7 @@ services:
   postgres:
     image: postgres
     environment:
-      POSTGRES_USER: user
+      POSTGRES_USER: test
       POSTGRES_PASSWORD: pass
     ports:
       - '5432:5432'
