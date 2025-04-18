@@ -5,6 +5,19 @@ spring:
     name: "@project.name@"
     version: "@project.version@"
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,env,configprops,beans,conditions,mappings,loggers
+  endpoint:
+    health:
+      show-details: always
+    env:
+      show-values: always
+    configprops:
+      show-values: always
+
 services:
   events:
     url: http://localhost:9000
