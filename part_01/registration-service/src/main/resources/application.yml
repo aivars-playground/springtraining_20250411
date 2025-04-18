@@ -4,3 +4,7 @@ spring:
   application:
     name: "@project.name@"
     version: "@project.version@"
+
+tickets:
+  events:
+    url: http://localhost:9000

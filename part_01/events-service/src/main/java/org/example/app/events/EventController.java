@@ -33,13 +33,19 @@ public class EventController {
     }
 
     @GetMapping(path = "/events/{id}")
-    public Event getEventById(@PathVariable("id") int eventId) {
-        return eventRepository.findById(eventId)
-                .orElseThrow(() -> new NoSuchElementException("Event with id " + eventId + " not found"));
+    public Event getEventById(@PathVariable("id") int id) {
+        return eventRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Event with id " + id + " not found"));
     }
 
     @GetMapping(path = "/products")
     public List<Product> getProductsByEvent(@RequestParam("eventId") int eventId) {
         return productRepository.findByEventId(eventId);
+    }
+
+    @GetMapping(path = "/products/{id}")
+    public Product getProductById(@PathVariable("id") int id) {
+        return productRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Product with id " + id + " not found"));
     }
 }

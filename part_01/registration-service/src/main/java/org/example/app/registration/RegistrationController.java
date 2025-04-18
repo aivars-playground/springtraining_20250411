@@ -3,7 +3,10 @@ package org.example.app.registration;
 import jakarta.validation.Valid;
 import org.example.app.events.Event;
 import org.example.app.events.Product;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.NoSuchElementException;
 import java.util.UUID;
@@ -13,17 +16,29 @@ import java.util.UUID;
 public class RegistrationController {
 
     private final RegistrationRepository registrationRepository;
+    private final WebClient webClient;
 
-    public RegistrationController(RegistrationRepository registrationRepository) {
+    public RegistrationController(RegistrationRepository registrationRepository, WebClient webClient) {
         this.registrationRepository = registrationRepository;
+        this.webClient = webClient;
     }
 
     @PostMapping
     public Registration create(@RequestBody @Valid Registration registration) {
 
         String ticketCode = UUID.randomUUID().toString();
-        Product product = null;
-        Event event = null;
+        Product product = webClient.get()
+                .uri("/products/{id}", registration.productId())
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON.toString())
+                .retrieve()
+                .bodyToMono(Product.class)
+                .block();
+        Event event = webClient.get()
+                .uri("/events/{id}", product.eventId())
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON.toString())
+                .retrieve()
+                .bodyToMono(Event.class)
+                .block();
 
         var registrationToSave = new Registration(
                 null,
