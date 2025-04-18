@@ -68,3 +68,16 @@ mvn spring-boot:build-image
 cd ./registration-servic
 mvn spring-boot:build-image
 ```
+
+graal
+===
+https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-with-GraalVM
+* limitations: '<profiles>docker</profiles>' currently not advisable to change the profie when running app, use env vars?
+```shell
+cd ./events-service
+mvn -Pnative spring-boot:build-image
+```
+```shell
+cd ./registration-service
+mvn -Pnative spring-boot:build-image
+```
