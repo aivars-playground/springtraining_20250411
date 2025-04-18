@@ -1,6 +1,8 @@
 package org.example.app.registration;
 
 import jakarta.validation.Valid;
+import org.example.app.events.Event;
+import org.example.app.events.Product;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.NoSuchElementException;
@@ -18,10 +20,21 @@ public class RegistrationController {
 
     @PostMapping
     public Registration create(@RequestBody @Valid Registration registration) {
-        String ticketCode = UUID.randomUUID().toString();
 
-        return registrationRepository.save(new Registration(
-                null, registration.productId(), ticketCode, registration.attendeeName()));
+        String ticketCode = UUID.randomUUID().toString();
+        Product product = null;
+        Event event = null;
+
+        var registrationToSave = new Registration(
+                null,
+                registration.productId(),
+                event.name(),
+                product.price(),
+                ticketCode,
+                registration.attendeeName()
+        );
+
+        return registrationRepository.save(registrationToSave);
     }
 
     @GetMapping(path = "/{ticketCode}")
@@ -38,8 +51,15 @@ public class RegistrationController {
                 .orElseThrow(() -> new NoSuchElementException("Registration with ticket code " + ticketCode + " not found"));
 
         // Only update the attendee name
-        return registrationRepository.save(new Registration(
-                existing.id(), existing.productId(), ticketCode, registration.attendeeName()));
+        var registrationToSave = new Registration(
+                existing.id(),
+                existing.productId(),
+                existing.eventName(),
+                existing.amount(),
+                existing.ticketCode(),
+                registration.attendeeName()
+        );
+        return registrationRepository.save(registrationToSave);
     }
 
     @DeleteMapping(path = "/{ticketCode}")
