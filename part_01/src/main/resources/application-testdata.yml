@@ -15,5 +15,5 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
   sql:
     init:
-      mode: never
+      mode: always
 
