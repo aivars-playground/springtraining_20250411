@@ -42,9 +42,12 @@ GET http://localhost:9001/actuator/metrics
 GET http://localhost:9001/actuator/metrics/http.server.requests?tag=uri:/registrations
 ```
 
-docker
+docker manual
 ===
 * build target jars
+```shell
+mvn clean install
+```
 ```shell
 cd ./events-service
 docker build -t events-service:0.0.1-SNAPSHOT .
@@ -52,4 +55,16 @@ docker build -t events-service:0.0.1-SNAPSHOT .
 ```shell
 cd ./registration-service
 docker build -t registration-service:0.0.1-SNAPSHOT .
+```
+* run [docker-compose-images.yml](docker-compose-images.yml)
+
+docker (build plugin)
+===
+```shell
+cd ./events-service
+mvn spring-boot:build-image
+```
+```shell
+cd ./registration-servic
+mvn spring-boot:build-image
 ```
