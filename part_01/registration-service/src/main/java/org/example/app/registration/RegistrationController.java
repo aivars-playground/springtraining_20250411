@@ -2,6 +2,7 @@ package org.example.app.registration;
 
 import jakarta.validation.Valid;
 import org.example.app.events.Event;
+import org.example.app.events.EventsClient;
 import org.example.app.events.Product;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -16,29 +17,19 @@ import java.util.UUID;
 public class RegistrationController {
 
     private final RegistrationRepository registrationRepository;
-    private final WebClient webClient;
+    private final EventsClient eventsClient;
 
-    public RegistrationController(RegistrationRepository registrationRepository, WebClient webClient) {
+    public RegistrationController(RegistrationRepository registrationRepository, EventsClient eventsClient) {
         this.registrationRepository = registrationRepository;
-        this.webClient = webClient;
+        this.eventsClient = eventsClient;
     }
 
     @PostMapping
     public Registration create(@RequestBody @Valid Registration registration) {
 
         String ticketCode = UUID.randomUUID().toString();
-        Product product = webClient.get()
-                .uri("/products/{id}", registration.productId())
-                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON.toString())
-                .retrieve()
-                .bodyToMono(Product.class)
-                .block();
-        Event event = webClient.get()
-                .uri("/events/{id}", product.eventId())
-                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON.toString())
-                .retrieve()
-                .bodyToMono(Event.class)
-                .block();
+        Product product = eventsClient.getProductById(registration.productId());
+        Event event = eventsClient.getEventsById(product.eventId());
 
         var registrationToSave = new Registration(
                 null,
