@@ -10,7 +10,4 @@ public interface EventsClient {
 
     @GetExchange("/events/{id}")
     Event getEventsById(@PathVariable("id") int productId);
-
-
-
 }

@@ -12,7 +12,7 @@ public class EventsConfiguration {
 
 
     @Bean
-    WebClient webClient(@Value("${tickets.events.url}") String baseUrl) {
+    WebClient eventsWebClient(@Value("${services.events.url}") String baseUrl) {
         return WebClient.builder()
                 .baseUrl(baseUrl)
                 .build();
@@ -20,9 +20,9 @@ public class EventsConfiguration {
 
 
     @Bean
-    EventsClient eventsClient(WebClient webClient) {
+    EventsClient eventsClient(WebClient eventsWebClient) {
         return HttpServiceProxyFactory
-                    .builderFor(WebClientAdapter.create(webClient))
+                    .builderFor(WebClientAdapter.create(eventsWebClient))
                     .build()
                     .createClient(EventsClient.class);
     }
