@@ -16,10 +16,6 @@
     <name>events-service</name>
     <description>events-service</description>
 
-    <properties>
-        <java.version>24</java.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
