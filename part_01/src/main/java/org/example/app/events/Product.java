@@ -1,19 +1,26 @@
 package org.example.app.events;
-
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "organizers")
-public class Product{
+@Table(name = "products")
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(nullable = false)
     private int eventId;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column
     private String description;
+
+    @Column(nullable = false)
     private BigDecimal price;
 
     public int getId() {
@@ -23,7 +30,6 @@ public class Product{
     public void setId(int id) {
         this.id = id;
     }
-
 
     public int getEventId() {
         return eventId;

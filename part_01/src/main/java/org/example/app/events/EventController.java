@@ -1,8 +1,8 @@
 package org.example.app.events;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.web.ErrorResponse;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -14,7 +14,9 @@ public class EventController {
     private final EventRepository eventRepository;
     private final ProductRepository productRepository;
 
-    public EventController(OrganizerRepository organizerRepository, EventRepository eventRepository, ProductRepository productRepository) {
+    public EventController(OrganizerRepository organizerRepository,
+                           EventRepository eventRepository,
+                           ProductRepository productRepository) {
         this.organizerRepository = organizerRepository;
         this.eventRepository = eventRepository;
         this.productRepository = productRepository;
@@ -26,23 +28,18 @@ public class EventController {
     }
 
     @GetMapping(path = "/events")
-    public List<Event> getEventsByOrganizerId(@RequestParam("organizerId") int organizerId) {
+    public List<Event> getEventsByOrganizer(@RequestParam("organizerId") int organizerId) {
         return eventRepository.findByOrganizerId(organizerId);
     }
 
-    @GetMapping(path = "/events/{eventId}")
-    public Event getEventById(@PathVariable("eventId") int eventId) {
+    @GetMapping(path = "/events/{id}")
+    public Event getEventById(@PathVariable("id") int eventId) {
         return eventRepository.findById(eventId)
-                .orElseThrow(() -> new NoSuchElementException("element by id:" + eventId + " notFound"));
+                .orElseThrow(() -> new NoSuchElementException("Event with id " + eventId + " not found"));
     }
 
     @GetMapping(path = "/products")
-    public List<Product> getProductsByEventId(@RequestParam("eventId") int eventId) {
+    public List<Product> getProductsByEvent(@RequestParam("eventId") int eventId) {
         return productRepository.findByEventId(eventId);
-    }
-
-    @ExceptionHandler(NoSuchElementException.class)
-    public ErrorResponse handleNotFound(NoSuchElementException ex) {
-        return ErrorResponse.create(ex, HttpStatus.NOT_FOUND, ex.getMessage());
     }
 }

@@ -1,17 +1,25 @@
 package org.example.app.events;
-
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "organizers")
-public class Venue{
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private int id;
-        private String name;
-        private String street;
-        private String city;
-        private String country;
+@Table(name = "venues")
+public class Venue {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column
+    private String street;
+
+    @Column
+    private String city;
+
+    @Column
+    private String country;
 
     public int getId() {
         return id;

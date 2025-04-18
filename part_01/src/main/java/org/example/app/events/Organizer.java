@@ -1,10 +1,9 @@
 package org.example.app.events;
-
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "organizers")
-public class Organizer{
+public class Organizer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

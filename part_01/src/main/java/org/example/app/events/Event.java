@@ -6,24 +6,27 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "events")
-public class
-Event{
+public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(nullable = false)
     private String name;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "organizer_id", referencedColumnName = "id", nullable = false)
     private Organizer organizer;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "venue_id", referencedColumnName = "id", nullable = false)
     private Venue venue;
 
-
+    @Column
     private LocalDate startDate;
+
+    @Column
     private LocalDate endDate;
 
     public int getId() {

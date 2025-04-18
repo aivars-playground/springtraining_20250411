@@ -8,8 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("registrations")
 public record Registration(
         @Id String id,
-        @NotNull Integer productId,
+        @NotNull(message = "Product id is required") Integer productId,
         String ticketCode,
-        @NotBlank String attendeeName
-) {
+        @NotBlank(message = "Attendee name is required") String attendeeName) {
 }
