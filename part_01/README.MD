@@ -2,16 +2,18 @@ APP
 ===
 
 start
-----
-
-* start database
+===
+start database
 ```shell
 docker compose up -d
 ```
-* populate test data:
+
+populate test data:
+===
 Use spring profile `testdata` ([application-testdata.yml](events-service/src/main/resources/application-testdata.yml)) to initialize database DDL and add sample data
 
-* sample commands
+sample commands
+===
 ```http request
 POST http://localhost:9001/registrations
 Content-Type: application/json
@@ -22,8 +24,20 @@ Content-Type: application/json
 }
 ```
 
-* health (Actuator)
+health (Actuator)
+===
 ```http request
 GET http://localhost:9001/actuator/health
 Accept: application/vnd.spring-boot.actuator.v3+json
+```
+
+metrics
+===
+* all
+```http request
+GET http://localhost:9001/actuator/metrics
+```
+* filter by endpoint
+```http request
+GET http://localhost:9001/actuator/metrics/http.server.requests?tag=uri:/registrations
 ```
