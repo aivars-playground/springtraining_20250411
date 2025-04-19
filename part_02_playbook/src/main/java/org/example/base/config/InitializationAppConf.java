@@ -11,17 +11,6 @@ import java.util.Arrays;
 @Configuration
 public class InitializationAppConf {
 
-    /*
-        running app with "abc --myOption=bbb --myOption=ccc" arguments would return (in console, and in random order)
-
-        Running applicationRunner for:
-          SourceArgs: [abc, --myOption=bbb, --myOption=ccc]
-          NonOptionArgs: [abc]
-          OptionNames [myOption]
-            Option value for(myOption) [bbb, ccc]
-        Running commandLineRunner for args: [abc, --myOption=bbb, --myOption=ccc]
-     */
-
     @Bean
     CommandLineRunner commandLineRunner() {
         return args -> {
@@ -42,3 +31,14 @@ public class InitializationAppConf {
         };
     }
 }
+
+    /*
+        running app with "abc --myOption=bbb --myOption=ccc" arguments would return (in console, and in random order)
+
+        Running applicationRunner for:
+          SourceArgs: [abc, --myOption=bbb, --myOption=ccc]
+          NonOptionArgs: [abc]
+          OptionNames [myOption]
+            Option value for(myOption) [bbb, ccc]
+        Running commandLineRunner for args: [abc, --myOption=bbb, --myOption=ccc]
+     */
