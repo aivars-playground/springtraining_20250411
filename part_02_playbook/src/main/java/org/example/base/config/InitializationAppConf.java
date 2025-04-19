@@ -6,7 +6,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.swing.text.html.Option;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 
 @Configuration
 public class InitializationAppConf {
@@ -26,7 +29,7 @@ public class InitializationAppConf {
                         "\n  SourceArgs: " + Arrays.toString(appArgs.getSourceArgs()) +
                         "\n  NonOptionArgs: "+ appArgs.getNonOptionArgs().toString() +
                         "\n  OptionNames " + appArgs.getOptionNames().toString() +
-                        "\n    Option value for(myOption) "+appArgs.getOptionValues("myOption").toString()
+                        "\n    Option value for(myOption) "+ Optional.ofNullable(appArgs.getOptionValues("myOption")).map(List::toString).orElse("")
             );
         };
     }
