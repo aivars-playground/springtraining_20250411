@@ -54,4 +54,4 @@ is overwriting a prod ready
 `[DbPreloadConfig.java](src/main/java/org/example/base/config/DbPreloadConfig.java)` 
 different profiles should be used!!!
 workaround `allow-bean-definition-overriding: true` for demo purposes only... not for prod
-
+put "allow-bean-definition-overriding: true" in test profile

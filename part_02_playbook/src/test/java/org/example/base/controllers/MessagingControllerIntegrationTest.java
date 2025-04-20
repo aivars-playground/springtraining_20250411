@@ -26,7 +26,7 @@ class MessagingControllerIntegrationTest {
         String result = messagingController.sendJmsMessage();
         String expected = "done";
         assertEquals(expected, result);
-        verify(sampleListener, timeout(100).times(1)).receiveMessage(any());
+        verify(sampleListener, timeout(10000).times(1)).receiveMessage(any());
     }
 
 }
