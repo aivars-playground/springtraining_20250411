@@ -43,3 +43,7 @@ actuators
 ```http request
 GET http://localhost:8080/actuator/customactuator
 ```
+
+testing
+=======
+* run `docker compose` before executing integration test
