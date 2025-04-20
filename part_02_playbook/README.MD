@@ -18,6 +18,7 @@ this dependency:
         </dependency>
 ```
 automatically adds a bunch of endpoints (see Mappings), i.e.
+it even supports paging
 ```
 /{repository_name}/{id}   [GET]
 ```
