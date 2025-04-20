@@ -2,3 +2,17 @@ spring:
   application:
     name: "@project.name@"
     version: "@project.version@"
+  h2:
+    console:
+      enabled: true
+  datasource:
+    one:
+      driver-class-name: org.h2.Driver
+      jdbc-url: jdbc:h2:mem:one
+      username: one_username
+      password: one_password
+    two:
+      driver-class-name: org.h2.Driver
+      jdbc-url: jdbc:h2:mem:two
+      username: two_username
+      password: two_password
