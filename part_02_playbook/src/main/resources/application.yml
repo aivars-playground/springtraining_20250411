@@ -19,3 +19,8 @@ spring:
       jdbc-url: jdbc:h2:mem:two
       username: two_username
       password: two_password
+  artemis:
+    broker-url: tcp://localhost:61616
+    mode: native
+    user: artemis
+    password: artemis

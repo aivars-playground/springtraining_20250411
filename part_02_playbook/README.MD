@@ -27,3 +27,13 @@ GET http://localhost:8080/api/contacts/1
 Accept: application/hal+json
 ```
 
+messaging
+=========
+ActiveMQ Artemis l/p: artemis/artemis
+* sending message
+```http request
+###
+GET http://localhost:8080/sendJmsMessage
+```
+* receiving
+`org.example.base.jms.SampleListener`
