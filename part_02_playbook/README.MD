@@ -37,3 +37,9 @@ GET http://localhost:8080/sendJmsMessage
 ```
 * receiving
 `org.example.base.jms.SampleListener`
+
+actuators
+=========
+```http request
+GET http://localhost:8080/actuator/customactuator
+```

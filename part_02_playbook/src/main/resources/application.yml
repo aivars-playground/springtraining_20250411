@@ -24,3 +24,9 @@ spring:
     mode: native
     user: artemis
     password: artemis
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "customactuator"
