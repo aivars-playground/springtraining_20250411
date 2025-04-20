@@ -24,6 +24,8 @@ spring:
     mode: native
     user: artemis
     password: artemis
+  main:
+    allow-bean-definition-overriding: true
 
 management:
   endpoints:

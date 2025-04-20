@@ -18,7 +18,7 @@ public class DbPreloadConfig {
         return args -> {
             System.out.println("Preloading " + repository.save(new Contact("John Smith", "123-456-7890", "jo.smith@example.com")));
             System.out.println("Preloading " + repository.save(new Contact("Jane Smith", "098-765-4321", "ja.smith@example.com")));
-            System.out.println("Preloading Two " + repositoryTwo.save(new User("User")));
+            System.out.println("Preloading " + repositoryTwo.save(new User("Prod User")));
         };
     }
 }

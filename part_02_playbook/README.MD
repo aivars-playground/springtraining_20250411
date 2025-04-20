@@ -47,3 +47,11 @@ GET http://localhost:8080/actuator/customactuator
 testing
 =======
 * run `docker compose` before executing integration test
+
+test might need different setup, 
+`[DbTestPreloadConfig.java](src/test/java/org/example/base/config/DbTestPreloadConfig.java)` 
+is overwriting a prod ready 
+`[DbPreloadConfig.java](src/main/java/org/example/base/config/DbPreloadConfig.java)` 
+different profiles should be used!!!
+workaround `allow-bean-definition-overriding: true` for demo purposes only... not for prod
+
