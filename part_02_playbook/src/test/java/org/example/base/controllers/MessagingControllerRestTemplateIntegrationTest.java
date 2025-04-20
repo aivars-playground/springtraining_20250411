@@ -12,7 +12,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class MessagingControllerRestTemplatentegrationTest {
+class MessagingControllerRestTemplateIntegrationTest {
 
     @Value(value = "${local.server.port}")
     private int port;
@@ -21,7 +21,7 @@ class MessagingControllerRestTemplatentegrationTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    void test_jmsTemplate() {
+    void test_sendJms() {
         var url = "http://localhost:"+port+"/sendJmsMessage";
         assertEquals("done",restTemplate.getForObject(url, String.class));
     }
