@@ -18,12 +18,12 @@ this dependency:
         </dependency>
 ```
 automatically adds a bunch of endpoints (see Mappings), i.e.
-it even supports paging
+it even supports paging, "/api" - base path can be configured in yml
 ```
 /{repository_name}/{id}   [GET]
 ```
 ```http request
-GET http://localhost:8080/contacts/1
+GET http://localhost:8080/api/contacts/1
 Accept: application/hal+json
 ```
 

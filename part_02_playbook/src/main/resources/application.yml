@@ -5,6 +5,9 @@ spring:
   h2:
     console:
       enabled: true
+  data:
+    rest:
+      base-path: "/api"
   datasource:
     one:
       driver-class-name: org.h2.Driver
