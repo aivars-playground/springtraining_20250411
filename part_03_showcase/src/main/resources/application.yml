@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: "@project.name@"
+    version: "@project.version@"
+  data:
+    mongodb:
+      uri: "mongodb://localhost:27017/java"
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/java"
+    username: "postgres"
+    password: "postgres"
+  jpa:
+    database-platform: "org.hibernate.dialect.PostgreSQLDialect"
+    hibernate:
+      ddl-auto: create
+      show-sql: true
+
