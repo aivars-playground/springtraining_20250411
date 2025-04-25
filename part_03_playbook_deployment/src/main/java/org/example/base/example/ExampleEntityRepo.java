@@ -1,6 +1,5 @@
-package org.example.base.repos;
+package org.example.base.example;
 
-import org.example.base.entities.ExampleEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

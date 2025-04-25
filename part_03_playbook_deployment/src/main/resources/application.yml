@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: "@project.name@"
+    version: "@project.version@"
+  data:
+    mongodb:
+      uri: ${MONGO_URI:mongodb://localhost:27017/example}
+  datasource:
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/example}
+    username: "postgres"
+    password: "postgres"
+  jpa:
+    database-platform: "org.hibernate.dialect.PostgreSQLDialect"
+    hibernate:
+      ddl-auto: create
+      show-sql: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,env
+  endpoint:
+    env:
+      show-values: always
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    hostname: ${HOSTNAME:-"unknown"}

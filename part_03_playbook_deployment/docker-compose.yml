@@ -1,0 +1,44 @@
+services:
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - example-network
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: example
+    networks:
+      - example-network
+  helloservice:
+    image: eclipse-temurin:24
+    scale: 3
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/example
+      - POSTGRES_URL=jdbc:postgresql://postgres:5432/example
+    volumes:
+      - ./target/part_03_playbook_deployment-0.0.1-SNAPSHOT.jar:/app/app.jar
+    command: ["java", "-jar", "/app/app.jar"]
+    depends_on:
+      - postgres
+      - mongo
+    networks:
+      - example-network
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "9090:80"
+    depends_on:
+      - helloservice
+    networks:
+      - example-network
+
+networks:
+  example-network:
