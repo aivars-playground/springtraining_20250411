@@ -52,3 +52,18 @@ configure nginx
     }
 ```
 see [nginx.conf](nginx.conf)
+
+
+rescaling
+--------
+```shell
+docker compose up -d --scale helloservice=5
+```
+add to ngnx config line to restart
+```
+    server {
+        resolver 127.0.0.11 valid=5s;
+        ...
+```
+ISSUE!!! when upscaling, ngnx is not picking up additional instances,
+if dockercompoose has 3 instances, when rescaling to 5, only 3 are used until restarting ngnx
