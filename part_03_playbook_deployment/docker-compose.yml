@@ -17,7 +17,7 @@ services:
       - example-network
   helloservice:
     image: eclipse-temurin:24
-    scale: 3
+    scale: 2
     environment:
       - MONGO_URI=mongodb://mongo:27017/example
       - POSTGRES_URL=jdbc:postgresql://postgres:5432/example

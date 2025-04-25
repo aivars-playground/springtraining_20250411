@@ -67,3 +67,16 @@ add to ngnx config line to restart
 ```
 ISSUE!!! when upscaling, ngnx is not picking up additional instances,
 if dockercompoose has 3 instances, when rescaling to 5, only 3 are used until restarting ngnx
+
+rescaling workaround
+--------------------
+```
+        resolver 127.0.0.11 valid=5s;
+        set $workaround_helloservice helloservice;
+        
+        location / {
+            proxy_pass http://$workaround_helloservice:8080;
+```
+
+https://tenzer.dk/nginx-with-dynamic-upstreams/
+https://www.ameyalokare.com/docker/2017/09/27/nginx-dynamic-upstreams-docker.html
