@@ -1,6 +1,6 @@
 package org.example.base.models;
 
 
-public record Example(String name) {
+public record MyRecord(String name) {
 
 }
